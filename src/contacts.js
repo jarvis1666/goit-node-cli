@@ -1,21 +1,16 @@
-
-
 import path from 'path'
 import { promises as fs } from 'fs';
-//npm install uuid
 import { v4 as uuidv4 } from 'uuid';
 
 
 const contactsPath = path.resolve('db', 'contacts.json');
-// console.log(contactsPath);
+
 
 
 async function listContacts() {
-    // ...твій код. Повертає масив контактів.
     try {
         const readContacts = await fs.readFile(contactsPath)
         const arrContacts = JSON.parse(readContacts)
-        // console.log(arrContacts);
         return arrContacts;
        
     } catch (error) {
@@ -23,10 +18,9 @@ async function listContacts() {
     }
     
 }
-// listContacts(contactsPath)
+
 
 async function getContactById(contactId) {
-    // ...твій код. Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
     try {
         const Contacts = await listContacts();
         const objContact = Contacts.find(contact => contact.id === contactId)
@@ -38,7 +32,6 @@ async function getContactById(contactId) {
 }
 
 async function removeContact(contactId) {
-    // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
     try {
         const Contacts =await listContacts();
         const idxContact = Contacts.findIndex(contact => contact.id === contactId);
@@ -55,7 +48,6 @@ async function removeContact(contactId) {
 }
 
 async function addContact(name, email, phone) {
-    // ...твій код. Повертає об'єкт доданого контакту (з id).
     try {
         const Contacts =await listContacts();
         const newContact = {
